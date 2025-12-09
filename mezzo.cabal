@@ -49,15 +49,16 @@ library
                      , Mezzo.Render.Transform
 
   build-depends:       base >= 4.7 && < 5
-                     , ghc-typelits-natnormalise < 0.6
+                     , ghc-typelits-natnormalise
                      , template-haskell
-                     , HCodecs == 0.5.1
+                     , HCodecs
                      , boxes
                      , ghc-prim
                      , Euterpea
-  ghc-options:         -fplugin GHC.TypeLits.Normalise
+  ghc-options:       -fplugin GHC.TypeLits.Normalise
+                     -fplugin-opt GHC.TypeLits.Normalise:allow-negated-numbers
   default-language:    Haskell2010
-  default-extensions:  TypeInType
+  default-extensions:  PolyKinds
                      , TypeApplications
                      , TypeFamilies
                      , GADTs
@@ -69,6 +70,7 @@ library
                      , FlexibleContexts
                      , UndecidableInstances
                      , ConstraintKinds
+                     , DataKinds
 
 
 test-suite mezzo-test

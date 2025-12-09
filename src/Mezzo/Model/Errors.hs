@@ -1,19 +1,19 @@
-
------------------------------------------------------------------------------
--- |
--- Module      :  Mezzo.Model.Errors
--- Description :  Musical error handling
--- Copyright   :  (c) Dima Szamozvancev
--- License     :  MIT
---
--- Maintainer  :  ds709@cam.ac.uk
--- Stability   :  experimental
--- Portability :  portable
---
--- Types and functions for handling and displaying composition errors.
---
 -----------------------------------------------------------------------------
 
+-----------------------------------------------------------------------------
+
+{- |
+Module      :  Mezzo.Model.Errors
+Description :  Musical error handling
+Copyright   :  (c) Dima Szamozvancev
+License     :  MIT
+
+Maintainer  :  ds709@cam.ac.uk
+Stability   :  experimental
+Portability :  portable
+
+Types and functions for handling and displaying composition errors.
+-}
 module Mezzo.Model.Errors where
 
 import Mezzo.Model.Types
@@ -50,7 +50,7 @@ type family PpPC (pc :: PitchClass) :: ErrorMessage where
 
 -- | Print accidental type.
 type family PpAcc (acc :: Accidental) :: ErrorMessage where
-    PpAcc Natural = Text ""
+    PpAcc 'Natural = Text ""
     PpAcc Sharp = Text "#"
     PpAcc Flat = Text "b"
 
@@ -94,4 +94,4 @@ type family MotionError (t :: Symbol) (d :: DyadPair) where
 
 -- | Create an error message with the given text and chord root.
 type family ChordError (t1 :: Symbol) (r :: RootType) (t2 :: Symbol) where
-    ChordError t1 r t2 = TypeError (Text t1  :<>: PpPitch (RootToPitch r) :<>: Text t2)
+    ChordError t1 r t2 = TypeError (Text t1 :<>: PpPitch (RootToPitch r) :<>: Text t2)
